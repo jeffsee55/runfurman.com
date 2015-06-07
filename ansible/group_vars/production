@@ -1,0 +1,58 @@
+mysql_root_password: productionpw
+
+github_ssh_keys:
+  - username: jeffsee55
+      authorized:
+            - "{{ web_user }}"
+
+project_pre_build_commands_local:
+   - path: "{{ project.local_path }}/web/app/themes/sage"
+        cmd: npm install
+           - path: "{{ project.local_path }}/web/app/themes/sage"
+                cmd: bower install
+                   - path: "{{ project.local_path }}/web/app/themes/sage"
+                        cmd: gulp --production
+
+project_local_files:
+  - name: compiled theme assets
+      src: "{{ project.local_path }}/web/app/themes/sage/dist"
+          dest: web/app/themes/sage
+
+wordpress_sites:
+  runfurman.com:
+    site_hosts:
+      - runfurman.com
+    local_path: '../site' # path targeting local Bedrock site directory (relative to Ansible root)
+    repo: git@github.com:jeffsee55/runfurman.com.git
+    subtree: site
+    branch: master
+    multisite:
+      enabled: false
+      subdomains: false
+    ssl:
+      enabled: false
+    system_cron: true
+    env:
+      wp_home: http://runfurman.com
+      wp_siteurl: http://runfurman.com/wp
+      wp_env: production
+      db_name: runfurman_prod
+      db_user: runfurman_dbuser
+      db_password: runfurman_dbpassword
+      # Generate your keys here: https://api.wordpress.org/secret-key/1.1/salt/
+      define('AUTH_KEY',
+      '2|W-2`y#PJ#Ty;kWH6LR}.+1>>4Uy=+FShHz<C1VcN5(DDWu>~y, &`T|NS+(=+u');
+      define('SECURE_AUTH_KEY',  'c/qM?*dc7w;9&2RZ|i^h+f&+$m
+      $pxC%q/(h#ho1[U+F@&*J:}-YpT8;?;S#%+8&');
+      define('LOGGED_IN_KEY',
+      '1Tm--`w29shF1fI5Z*VNJPP$-S=+dSZCzj[=UJA%T<KTU>/0Zn&b]@>hLJX]8diz');
+      define('NONCE_KEY',        '6ot5k`,Kl-EG|$>s4Q~9_tU4,VXV
+      7.W7r?R=q1/|Ir<|O_t-K}<e*t,|{Pcog@R');
+      define('AUTH_SALT',
+      '3<Y3D_SN/LqLQs?e0nrP-FVVm5up,E%~u(uf{7~+_(|H,f|(1bDE-?+-RAwYY|i.');
+      define('SECURE_AUTH_SALT',
+      'wP(mhmT*H)!w9vqI2T:@dn4~0mqly9.4mbb3c6Wy^|gmOHYJ_%#_t>ot~oa^S;4H');
+      define('LOGGED_IN_SALT',   '9ZhfQ8|S4K=MjydnQrm#d$|75 H$NI:,3iofwCDmV
+      .`EFR+d)i+65:noD9BOLxq');
+      define('NONCE_SALT',       '[N?01FjSL_]w_GlMsXDY`RH5|s}qlE|xf
+      @XE%Oo-R%h94||PA.X%D|ePyZbd$S[');
