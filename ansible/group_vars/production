@@ -1,27 +1,22 @@
-mysql_root_password: productionpw
+mysql_root_password: eqe23Gxd5o
 
 github_ssh_keys:
-  - username: jeffsee55
-      authorized:
-            - "{{ web_user }}"
+  - username: jeffsee55 
+    authorized:
+      - "{{ web_user }}"
 
 project_pre_build_commands_local:
    - path: "{{ project.local_path }}/web/app/themes/sage"
-        cmd: npm install
-           - path: "{{ project.local_path }}/web/app/themes/sage"
-                cmd: bower install
-                   - path: "{{ project.local_path }}/web/app/themes/sage"
-                        cmd: gulp --production
-
-project_local_files:
-  - name: compiled theme assets
-      src: "{{ project.local_path }}/web/app/themes/sage/dist"
-          dest: web/app/themes/sage
+     cmd: npm install
+   - path: "{{ project.local_path }}/web/app/themes/sage"
+     cmd: bower install
+   - path: "{{ project.local_path }}/web/app/themes/sage"
+     cmd: gulp --production
 
 wordpress_sites:
-  runfurman.com:
+  45.55.175.72:
     site_hosts:
-      - runfurman.com
+      - 45.55.175.72
     local_path: '../site' # path targeting local Bedrock site directory (relative to Ansible root)
     repo: git@github.com:jeffsee55/runfurman.com.git
     subtree: site
@@ -33,26 +28,17 @@ wordpress_sites:
       enabled: false
     system_cron: true
     env:
-      wp_home: http://runfurman.com
-      wp_siteurl: http://runfurman.com/wp
+      wp_home: http://45.55.175.72
+      wp_siteurl: http://45.55.175.72
       wp_env: production
       db_name: runfurman_prod
       db_user: runfurman_dbuser
-      db_password: runfurman_dbpassword
-      # Generate your keys here: https://api.wordpress.org/secret-key/1.1/salt/
-      define('AUTH_KEY',
-      '2|W-2`y#PJ#Ty;kWH6LR}.+1>>4Uy=+FShHz<C1VcN5(DDWu>~y, &`T|NS+(=+u');
-      define('SECURE_AUTH_KEY',  'c/qM?*dc7w;9&2RZ|i^h+f&+$m
-      $pxC%q/(h#ho1[U+F@&*J:}-YpT8;?;S#%+8&');
-      define('LOGGED_IN_KEY',
-      '1Tm--`w29shF1fI5Z*VNJPP$-S=+dSZCzj[=UJA%T<KTU>/0Zn&b]@>hLJX]8diz');
-      define('NONCE_KEY',        '6ot5k`,Kl-EG|$>s4Q~9_tU4,VXV
-      7.W7r?R=q1/|Ir<|O_t-K}<e*t,|{Pcog@R');
-      define('AUTH_SALT',
-      '3<Y3D_SN/LqLQs?e0nrP-FVVm5up,E%~u(uf{7~+_(|H,f|(1bDE-?+-RAwYY|i.');
-      define('SECURE_AUTH_SALT',
-      'wP(mhmT*H)!w9vqI2T:@dn4~0mqly9.4mbb3c6Wy^|gmOHYJ_%#_t>ot~oa^S;4H');
-      define('LOGGED_IN_SALT',   '9ZhfQ8|S4K=MjydnQrm#d$|75 H$NI:,3iofwCDmV
-      .`EFR+d)i+65:noD9BOLxq');
-      define('NONCE_SALT',       '[N?01FjSL_]w_GlMsXDY`RH5|s}qlE|xf
-      @XE%Oo-R%h94||PA.X%D|ePyZbd$S[');
+      db_password: js281883
+      auth_key: "]tDIFrrJnn-+z9|,/p|=hzBZ^2dRojRt{ur`}F(K< :.50{(|#<b3lqnAV/K7yq#'"
+      auth_salt: "KA7J@$Nm}Xw[{n/C6|kwn<a];7%W=tEH` E `p:Hs%5 n2,iV$j.yg},Bt8&Qj|h"
+      logged_in_key: "X==^uzOlrU,h>Sh|)2AhU4h+k]7;#]9/CU@288IWOt$d^wF,Q(bkX+xIuq?+hiT="
+      logged_in_salt: "w=bQIl<!c3k%=1+!eLZ-|p0n6~KeWoda!Ei|hC.|w8N|8<bJ97nyCwF||E@qy+RD"
+      nonce_key: "78kHVx|Peuo=zo,Ra rh^a&{w8zD.tWv&@:#ait.[/37$aDDS-}wEfu>Q<KE0wfJ"
+      nonce_salt: ">i;L~m/6{5QUsl/J39,,+Np1BYU;yO-xsP}sm]H(DTp|f}ix*Vh^2VWh1+Rjc @A"
+      secure_auth_key: "[eSf1Y ^D|Fc;SM|`pe.j1CAMo2&a!%jIbeT2Al[h 05lM&t<jbVOE]jd|z=Ou^3"
+      secure_auth_salt: "DeApt@+a=85$Y(wRTpScd8k,H_hRySKTi$Z6L;:W(|+TrW+Nx`KMX-S*46$)W#yt"
