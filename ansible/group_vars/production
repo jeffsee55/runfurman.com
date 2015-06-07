@@ -31,7 +31,7 @@ wordpress_sites:
       wp_home: http://45.55.175.72
       wp_siteurl: http://45.55.175.72
       wp_env: production
-      db_name: runfurman_prod
+      db_name: runfurman
       db_user: runfurman_dbuser
       db_password: js281883
       auth_key: "]tDIFrrJnn-+z9|,/p|=hzBZ^2dRojRt{ur`}F(K< :.50{(|#<b3lqnAV/K7yq#'"
