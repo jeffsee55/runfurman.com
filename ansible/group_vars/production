@@ -13,6 +13,11 @@ project_pre_build_commands_local:
    - path: "{{ project.local_path }}/web/app/themes/sage"
      cmd: gulp --production
 
+project_local_files:
+  - name: sync local uploads
+    src: "{{ project.local_path }}/web/app/uploads"
+    dest: ../../shared
+
 wordpress_sites:
   45.55.175.72:
     site_hosts:
